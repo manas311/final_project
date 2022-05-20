@@ -1,0 +1,945 @@
+  <html class="no-js">
+    <head>
+      <!--<link rel = "stylesheet" href = "styles.css">-->
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+      <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    </head>
+    <body ng-app="tatool.app" ng-controller="MainCtrl" ng-strict-di="" class="ng-scope" data-new-gr-c-s-check-loaded="14.1043.0" data-gr-ext-installed="">
+      <div tatool-spinner="{radius:25, width:8, length: 18}" spinner-key="loadingSpinner" class="ng-scope"><div id="spinnerBackdrop" style="visibility: hidden;">
+      </div> 
+      <div id="spinnerBox" style="visibility: hidden;"> 
+        <div id="spinner"> 
+          <div id="spinnerText" class="ng-binding" style="visibility: hidden;">
+          </div>
+           <div id="spinnerAnimation" style="visibility: hidden;">
+          </div>
+        </div>
+      </div>
+      <!-- uiView: -->
+      <div ui-view="" style="height:100%" class="ng-scope">
+        <div class="wrapper ng-scope"> 
+          <!-- ngInclude: -->
+          <div ng-include="" src="'header.html'" class="ng-scope">
+             <div id="top" class="ng-scope"> 
+               <nav class="navbar navbar-static-top" role="navigation"> 
+                 <!-- ngIf: getMode()==='lab' --> 
+                 <div class="container"> 
+                   <div class="navbar-header">
+                     <a class="navbar-brand" ui-sref="start" href="#!/"> 
+                       <img alt="Tatool" src="images/tatool_logo.png" height="30" width="144">
+                      </a>
+                    </div> 
+                    <!-- ngIf: authorized -->
+                    <div ng-if="authorized" class="ng-scope">
+                      <form class="navbar-form navbar-right ng-pristine ng-valid" role="search">
+                        <button type="submit" class="btn btn-default" ng-click="logout()">
+                          <i class="fa fa-sign-out"></i> Logout
+                        </button> 
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                          <li ui-sref-active="active" class="active">
+                            <a ui-sref="home" href="#!/modules">
+                              <i class="fa fa-cube"></i> Modules
+                            </a>
+                          </li> 
+                          <!-- ngIf: hasRole('developer') -->
+                          <li ui-sref-active="active" ng-if="hasRole('developer')" class="ng-scope">
+                            <a ui-sref="developer" href="#!/editor">
+                              <i class="fa fa-cogs"></i> Editor
+                            </a>
+                          </li>
+                          <!-- end ngIf: hasRole('developer') --> <!-- ngIf: hasRole('analytics') -->
+                          <li ui-sref-active="active" ng-if="hasRole('analytics')" class="ng-scope">
+                            <a ui-sref="analytics" href="#!/analytics"><i class="fa fa-bar-chart"></i> Analytics
+                            </a>
+                          </li>
+                          <!-- end ngIf: hasRole('analytics') --> <!-- ngIf: hasRole('admin') --> 
+                          <li ui-sref-active="active">
+                            <a ui-sref="doc" href="#!/doc/"><i class="fa fa-book"></i> Docs
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- end ngIf: authorized -->
+                      <!-- ngIf: !authorized -->
+                    </div>
+                  </nav>
+                </div>
+              </div>
+              <div class="container">
+                <div ng-class="{danger:'alert alert-danger alert-dismissible', success:'alert alert-success alert-dismissible', info:'alert alert-info alert-dismissible'}[alert.type]" role="alert" ng-show="alert.visible" class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" ng-click="hideAlert()">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                  <div ng-bind-html="alert.msg" class="ng-binding">Data successfully exported.</div>
+                </div>
+                <div class="actionHeader">
+                  <form class="form-inline pull-right ng-pristine ng-valid" role="form">
+                    <div class="input-group">
+                      <input class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="searchRepo" ng-model="query" ng-change="setModuleFilter()" placeholder="Search Module...">
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default button-up" ng-click="removeModuleFilter()">
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+                <uib-accordion>
+                  <div role="tablist" class="panel-group" ng-transclude="">
+                    <div uib-accordion-group="" is-open="accordionStatus.installed" class="ng-scope ng-isolate-scope panel panel-open">
+                      <div role="tab" id="accordiongroup-414-5127-tab" aria-selected="true" class="panel-heading" ng-keypress="toggleOpen($event)">
+                        <h4 class="panel-title">
+                          <a role="button" data-toggle="collapse" href="" aria-expanded="true" aria-controls="accordiongroup-414-5127-panel" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading" ng-disabled="isDisabled" uib-tabindex-toggle="">
+                            <span uib-accordion-header="" ng-class="{'text-muted': isDisabled}" class="ng-binding"> MY MODULES <i class="fa fa-chevron-right ng-scope fa-chevron-down red" ng-class="{'fa fa-chevron-down red': accordionStatus.installed, 'fa fa-chevron-right': !accordionStatus.installed}"></i> 
+                            </span>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="accordiongroup-414-5127-panel" aria-labelledby="accordiongroup-414-5127-tab" aria-hidden="false" role="tabpanel" class="panel-collapse collapse in" uib-collapse="!isOpen" aria-expanded="true">
+                        <div class="panel-body" ng-transclude="">
+                          <uib-accordion-heading class="ng-scope"></uib-accordion-heading>
+                          <div id="modules" class="ng-scope">
+                             <!-- ngRepeat: module in modules | orderBy:'moduleName' | filter:{ $: filterModule } --><!-- ngIf: !!modules.length -->
+                             <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in modules | orderBy:'moduleName' | filter:{ $: filterModule }" ng-if="!!modules.length">
+                               <div class="icon">
+                                 <i class="fa fa-play-circle fa-4x"></i> 
+                                 <!-- ngIf: module.maxSessionId -->
+                                 <span ng-if="module.maxSessionId" class="ng-scope">
+                                   <small>Sessions<br></small> 
+                                   <b class="sessionNum ng-binding">2
+                                     <!-- ngIf: module.moduleMaxSessions -->
+                                    </b>
+                                  </span>
+                                  <!-- end ngIf: module.maxSessionId -->
+                                </div>
+                                <div class="content">
+                                  <h2 class="ng-binding">Demo: Digit Span Training</h2>
+                                  <h3 class="ng-binding">Tatool</h3>
+                                  <div class="buttonbar">
+                                    <!-- ngIf: module.moduleDescription -->
+                                    <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                                      <i class="fa fa-file-text-o"></i>
+                                    </a>
+                                    <!-- end ngIf: module.moduleDescription -->
+                                    <span ng-switch="" on="module.moduleStatus">
+                                      <!-- ngSwitchWhen: update --> <!-- ngSwitchDefault: -->
+                                      <div class="btn btn-tatool ng-scope" ng-click="startModule(module)" ng-switch-default="">
+                                        <i class="fa fa-play-circle"></i> Start
+                                      </div>
+                                      <!-- end ngSwitchWhen: -->
+                                    </span>
+                                    <!-- ngIf: exporterEnabled(module) -->
+                                    <div id="dropdownExport" class="btn-group ng-scope dropdown open" uib-dropdown="" ng-if="exporterEnabled(module)">
+                                      <button id="dropdownExportButton" class="btn btn-tatool-off dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="true">Export 
+                                        <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu" role="menu" id="dropdownExport">
+                                        <!-- ngRepeat: exporter in module.moduleDefinition.export | filter:filterExporterValues | orderBy:'mode' -->
+                                        <li class="exporterName ng-scope" ng-click="doExport($event, module, exporter.mode, exporter.target)" ng-repeat="exporter in module.moduleDefinition.export | filter:filterExporterValues | orderBy:'mode'">
+                                          <a ui-sref="home" class="ng-binding" href="#!/modules">download</a>
+                                        </li>
+                                        <!-- end ngRepeat: exporter in module.moduleDefinition.export | filter:filterExporterValues | orderBy:'mode' -->
+                                        <li class="exporterName ng-scope" ng-click="doExport($event, module, exporter.mode, exporter.target)" ng-repeat="exporter in module.moduleDefinition.export | filter:filterExporterValues | orderBy:'mode'">
+                                          <a ui-sref="home" class="ng-binding" href="#!/modules">upload</a>
+                                        </li>
+                                        <!-- end ngRepeat: exporter in module.moduleDefinition.export | filter:filterExporterValues | orderBy:'mode' -->
+                                        
+                                        
+                                        <!--New list item inserted-->
+                                        
+                                        <li class="exporterName ng-scope" id = "el_link">
+                                          <a ui-sref="home" class="ng-binding" href="http://www.dropbox.com/home/Apps/tatool_web_api" ng-click = "toggleOpen">
+                                            Export to dropbox
+                                          </a>
+                                      </li>
+                                      <!-- end ngRepeat: exporter in module.moduleDefinition.export | filter:filterExporterValues | orderBy:'mode' -->
+                                      <!--
+                                          
+                                      -->
+                                      <!--
+                                          
+                                      -->
+                                    </ul>
+                                  </div>
+                                  <!-- end ngIf: exporterEnabled(module) -->
+                                  <a ng-click="deleteModule(module)" class="btn btn-tatool-off">
+                                    <i class="fa fa-trash-o"></i>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end ngIf: !!modules.length --><!-- end ngRepeat: module in modules | orderBy:'moduleName' | filter:{ $: filterModule } --> <!-- ngIf: modules.length === 0 -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </uib-accordion>
+              </div>
+              <div class="container">
+                <uib-accordion>
+                  <div role="tablist" class="panel-group" ng-transclude="">
+                    <div uib-accordion-group="" is-open="accordionStatus.invites" class="ng-scope ng-isolate-scope panel panel-open">
+                      <div role="tab" id="accordiongroup-416-1924-tab" aria-selected="true" class="panel-heading" ng-keypress="toggleOpen($event)">
+                        <h4 class="panel-title">
+                          <a role="button" data-toggle="collapse" href="" aria-expanded="true" aria-controls="accordiongroup-416-1924-panel" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading" ng-disabled="isDisabled" uib-tabindex-toggle="">
+                            <span uib-accordion-header="" ng-class="{'text-muted': isDisabled}" class="ng-binding"> INVITES <i class="fa fa-chevron-right ng-scope fa-chevron-down red" ng-class="{'fa fa-chevron-down red': accordionStatus.invites, 'fa fa-chevron-right': !accordionStatus.invites}"></i>
+                            </span>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="accordiongroup-416-1924-panel" aria-labelledby="accordiongroup-416-1924-tab" aria-hidden="false" role="tabpanel" class="panel-collapse collapse in" uib-collapse="!isOpen" aria-expanded="true">
+                        <div class="panel-body" ng-transclude=""> <uib-accordion-heading ng-class="'tatool-panel-heading'" class="ng-scope tatool-panel-heading"></uib-accordion-heading>
+                          <div id="modules" class="ng-scope">
+                            <!-- ngRepeat: module in invites | orderBy:'created_at':true | filter:{ $: filterModule } --> 
+                            <!-- ngIf: invites.length === 0 -->
+                            <div ng-if="invites.length === 0" class="ng-scope"> No modules found. 
+                            </div>
+                            <!-- end ngIf: invites.length === 0 -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </uib-accordion>
+              </div>
+              <div class="container">
+                <uib-accordion>
+                  <div role="tablist" class="panel-group" ng-transclude="">
+                    <div uib-accordion-group="" is-open="accordionStatus.public" class="ng-scope ng-isolate-scope panel panel-open">
+                      <div role="tab" id="accordiongroup-418-8730-tab" aria-selected="true" class="panel-heading" ng-keypress="toggleOpen($event)">
+                        <h4 class="panel-title">
+                          <a role="button" data-toggle="collapse" href="" aria-expanded="true" aria-controls="accordiongroup-418-8730-panel" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading" ng-disabled="isDisabled" uib-tabindex-toggle="">
+                            <span uib-accordion-header="" ng-class="{'text-muted': isDisabled}" class="ng-binding"> PUBLIC <i class="fa fa-chevron-right ng-scope fa-chevron-down red" ng-class="{'fa fa-chevron-down red': accordionStatus.public, 'fa fa-chevron-right': !accordionStatus.public}"></i>
+                            </span>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="accordiongroup-418-8730-panel" aria-labelledby="accordiongroup-418-8730-tab" aria-hidden="false" role="tabpanel" class="panel-collapse collapse in" uib-collapse="!isOpen" aria-expanded="true">
+                        <div class="panel-body" ng-transclude="">
+                          <uib-accordion-heading ng-class="'tatool-panel-heading'" class="ng-scope tatool-panel-heading">
+                          </uib-accordion-heading>
+                          <div id="modules" class="ng-scope">
+                            <!-- ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->      <!-- ngIf: !!repository.length -->
+                            <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                              <div class="icon">
+                                <i class="fa fa-globe fa-4x"></i>
+                              </div>
+                              <div class="content">
+                                <h2 class="ng-binding">
+                                  [S-FULL-SHORT] [Dawn Cognition Task] Click to begin. Do not exit fullscreen until you have completed all tasks.
+                                </h2>
+                                <h3 class="ng-binding">DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)
+                                </h3>
+                                <div class="buttonbar">
+                                  <!-- ngIf: module.moduleDescription -->
+                                  <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                                    <i class="fa fa-file-text-o"></i>
+                                  </a>
+                                  <!-- end ngIf: module.moduleDescription -->
+                                  <div class="btn btn-tatool" ng-click="installModule(module)">
+                                    <i class="fa fa-download"></i> Add
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end ngIf: !!repository.length -->
+                            <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                            <!-- ngIf: !!repository.length -->
+                            <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                              <div class="icon"><i class="fa fa-globe fa-4x">
+
+                              </i>
+                            </div>
+                            <div class="content">
+                              <h2 class="ng-binding">
+                                New Module
+                              </h2> 
+                              <h3 class="ng-binding">
+                                abir.bouraffa@uni-hamburg.de
+                              </h3>
+                              <div class="buttonbar">
+                                <!-- ngIf: module.moduleDescription -->
+                                <div class="btn btn-tatool" ng-click="installModule(module)">
+                                  <i class="fa fa-download">
+                                    Add
+                                  </i> 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end ngIf: !!repository.length -->
+                          <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                          <!-- ngIf: !!repository.length -->
+                          <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length"> <div class="icon">
+                            <i class="fa fa-globe fa-4x">
+
+                            </i>
+                          </div>
+                          <div class="content">
+                            <h2 class="ng-binding">
+                              Demo: Digit Span Training
+                            </h2>
+                            <h3 class="ng-binding">
+                              Tatool
+                            </h3>
+                            <div class="buttonbar">
+                              <!-- ngIf: module.moduleDescription -->
+                              <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                                <i class="fa fa-file-text-o">
+                              </i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download">
+                                Add
+                              </i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            Demo: Digit Span Training
+                          </h2>
+                          <h3 class="ng-binding">
+                            Tatool
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download">
+                                Add
+                              </i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x">
+
+                          </i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            Operation Span Task
+                          </h2>
+                          <h3 class="ng-binding">
+                            kozola2022@gmail.com
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [S-3] [Dawn Cognition Task] Click to begin. Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">
+                            DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o">
+
+                              </i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download">
+
+                              </i> 
+                              Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x">
+
+                          </i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [S-FULL] [Dawn Cognition Task] Click to begin. Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">
+                            DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o">
+
+                              </i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> 
+                              Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div> <div class="content">
+                          <h2 class="ng-binding">
+                            Arbeitsgedächtnis- Test
+                          </h2>
+                          <h3 class="ng-binding">
+                            sekercimelisa79@gmail.com
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x">
+
+                          </i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [U-2] [Dawn Cognition Task] Click to begin. Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">
+                            DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a><!-- end ngIf: module.moduleDescription --> 
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length --><!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            Rounds 1 and 2
+                          </h2>
+                          <h3 class="ng-binding">
+                            Tatool
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            Round 3
+                          </h2>
+                          <h3 class="ng-binding">
+                            virtual@chet.rochester.edu
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x">
+
+                          </i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [I-3] [Dawn Cognition Task] Click to begin. 
+                            Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">
+                            DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a><!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [U-3] [Dawn Cognition Task] Click to begin.
+                            Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">
+                            DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a><!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [U-FULL] [Dawn Cognition Task] Click to begin. 
+                            Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">
+                            DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)
+                          </h3> <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            Stroop FC
+                          </h2>
+                          <h3 class="ng-binding">
+                            francois.sapiensa@gmail.com
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            Demo: Stroop
+                          </h2>
+                          <h3 class="ng-binding">
+                            Tatool
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> 
+                              Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [S-2] [Dawn Cognition Task] Click to begin. 
+                            Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">
+                            DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)
+                          </h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [I-FULL] [Dawn Cognition Task] Click to begin.
+                            Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)</h3>
+                          <div class="buttonbar"> 
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [I-2] [Dawn Cognition Task] Click to begin.
+                            Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)</h3>
+                          <div class="buttonbar"> 
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download">
+
+                              </i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } --><!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [I-1] [Dawn Cognition Task] Click to begin.
+                            Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)</h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } --><!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">
+                            [S-1] [Dawn Cognition Task] Click to begin.
+                            Do not exit fullscreen until you have completed all tasks.
+                          </h2>
+                          <h3 class="ng-binding">DawnLab @ SMU, tasks adapted from University of Zurich (von Bastian, Souza, &amp; Gade)</h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon"><i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">Aufmerksamkeitstest</h2>
+                          <h3 class="ng-binding">Tatool</h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div> <div class="content">
+                          <h2 class="ng-binding">halved EF Battery: Updating</h2>
+                          <h3 class="ng-binding">University of Zurich (von Bastian, Souza, &amp; Gade)</h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon">
+                          <i class="fa fa-globe fa-4x"></i>
+                        </div> <div class="content">
+                          <h2 class="ng-binding">halted EF Battery: Inhibition+shilfting+update</h2>
+                          <h3 class="ng-binding">University of Zurich (von Bastian, Souza, &amp; Gade)</h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } -->
+                      <!-- ngIf: !!repository.length -->
+                      <div class="tile ng-scope" ng-class="{'tileHighlight': module.moduleId == highlightModuleId}" ng-repeat="module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule }" ng-if="!!repository.length">
+                        <div class="icon"><i class="fa fa-globe fa-4x"></i>
+                        </div>
+                        <div class="content">
+                          <h2 class="ng-binding">EF Battery: Inhibition+shilfting+update</h2>
+                          <h3 class="ng-binding">University of Zurich (von Bastian, Souza, &amp; Gade)</h3>
+                          <div class="buttonbar">
+                            <!-- ngIf: module.moduleDescription -->
+                            <a ng-click="showDescription(module)" class="btn btn-tatool-blue ng-scope" tooltip="Show a description for this Module." tooltip-placement="bottom" ng-if="module.moduleDescription">
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                            <!-- end ngIf: module.moduleDescription -->
+                            <div class="btn btn-tatool" ng-click="installModule(module)">
+                              <i class="fa fa-download"></i> Add
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- end ngIf: !!repository.length -->
+                      <!-- end ngRepeat: module in repository | orderBy:'created_at':true | startFrom:repoPaging.currentPage*repoPaging.pageSize | limitTo:repoPaging.pageSize | filter:{ $: filterModule } --> <!-- ngIf: repository.length === 0 -->
+                    </div>
+                    <br clear="left" class="ng-scope">
+                    <div class="pull-right ng-binding ng-scope" ng-show="repository.length > 0">
+                      <button class="btn btn-default" ng-disabled="repoPaging.currentPage == 0" ng-click="repoPaging.currentPage=repoPaging.currentPage-1" disabled="disabled">
+                        <i class="fa fa-chevron-left"></i>
+                      </button> 1/6
+                      <button class="btn btn-default" ng-disabled="repoPaging.currentPage >= repoPaging.numPerPage - 1" ng-click="repoPaging.currentPage=repoPaging.currentPage+1">
+                        <i class="fa fa-chevron-right"></i> 
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </uib-accordion>
+        </div>
+        <div class="push">
+
+        </div>
+      </div><!-- ngInclude: -->
+      <div ng-include="" src="'footer.html'" class="ng-scope">
+          <footer class="ng-scope">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-2 copyright">
+                  <p>Open Sourced by Tatool</p>
+                </div>
+                <div class="col-sm-4">
+                  <p>
+                    <a ui-sref="doc" href="#!/doc/">
+                      <i class="fa fa-book"></i> Documentation
+                    </a>
+                  </p>
+                </div>
+                <div class="pull-right">
+          <a href="http://twitter.com/tatool_ch" class="twitter-icon" target="_blank">
+            <i class="fa fa-twitter-square fa-2x"></i>
+          </a>&nbsp;
+          <a href="http://www.facebook.com/tatool.ch" class="facebook-icon" target="_blank">
+            <i class="fa fa-facebook-square fa-2x"></i>
+          </a>&nbsp;
+          <a href="http://github.com/tatool/tatool-web" class="github-icon" target="_blank">
+            <i class="fa fa-github fa-2x"></i>
+          </a>
+        </div>
+        <!-- ngIf: getMode()!=='lab' -->
+        <div class="pull-right donate-button ng-scope" ng-if="getMode()!=='lab'">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="ng-pristine ng-valid">
+            <input type="hidden" name="cmd" value="_s-xclick" autocomplete="off">
+            <input type="hidden" name="hosted_button_id" value="W2RG6Q2EM2SF6" autocomplete="off">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+          </form>
+        </div>
+        <!-- end ngIf: getMode()!=='lab' -->
+        <!-- ngInclude: getMode()!=='lab' ? 'ga.html' : null -->
+        <div ng-include="getMode()!=='lab' ? 'ga.html' : null" class="ng-scope">
+          <!-- ngIf: getMode()!=='lab' -->
+          <script ng-if="getMode()!=='lab'" class="ng-scope">
+          !function(e,a,t,n,g,c,o){
+            e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){
+              (e.ga.q=e.ga.q||[]).push(arguments)
+              },e.ga.l=1*new Date,c=a.createElement(t),o=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)
+              }
+              (window,document,"script",0,"ga"),ga("create","UA-58174534-1","auto"),ga("send","pageview")
+              </script>
+              <!-- end ngIf: getMode()!=='lab' -->
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="scripts/runtime.min.js">
+
+  </script>
+  <script src="scripts/vendors.min.js">
+
+  </script>
+  <script src="scripts/tatool-app.min.js">
+
+  </script>
+   
+  <script src = "index.js"></script>
+</body>
+<grammarly-desktop-integration data-grammarly-shadow-root="true">
+
+</grammarly-desktop-integration>
+</html>
