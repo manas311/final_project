@@ -1,12 +1,1 @@
-{
-    "name": "data.csv", 
-    "path_lower": "/uploaded_files/data.csv", 
-    "path_display": "/uploaded_files/data.csv", 
-    "id": "id:-lcVpzurYbAAAAAAAAAA-w", 
-    "client_modified": "2022-05-20T07:14:28Z", 
-    "server_modified": "2022-05-20T07:14:28Z", 
-    "rev": "015df6c3dbaa4a9000000025adc6e80", 
-    "size": 375, 
-    "is_downloadable": true, 
-    "content_hash": "db5983d0a0a97c42c2634086f1b0778c5a936e1fd4aa54a69b90ecb9ab6807d0"
-}
+{"name": "data.csv", "path_lower": "/uploaded_files/data.csv", "path_display": "/uploaded_files/data.csv", "id": "id:-lcVpzurYbAAAAAAAAAA_Q", "client_modified": "2022-05-20T10:05:40Z", "server_modified": "2022-05-20T10:05:40Z", "rev": "015df6ea1f8354c000000025adc6e80", "size": 375, "is_downloadable": true, "content_hash": "db5983d0a0a97c42c2634086f1b0778c5a936e1fd4aa54a69b90ecb9ab6807d0"}

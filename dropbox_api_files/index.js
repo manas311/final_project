@@ -10,6 +10,27 @@ var filename = 'data.csv';
 //reading the contents 
 var content = fs.readFileSync(filename);
 
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+
+mongoose.connect("mongodb://localhost:27017/metaDataDB", {useNewUrlParser:true});
+
+const MetaSchema = 
+  {
+    "name": String,
+    "path_lower": String,
+    "path_display": String,
+    "id": String,
+    "client_modified": Date,
+    "server_modified": String,
+    "rev": String,
+    "size": Number,
+    "is_downloadable": Boolean,
+    "content_hash": String
+  }
+
+  const Meta = mongoose.model("Meta", MetaSchema);
+
 options = {
             method: "POST",
             url: 'https://content.dropboxapi.com/2/files/upload',
@@ -36,6 +57,9 @@ request(options,function(err, res,body){
   console.log("Err : " + err);
   console.log("res : " + res);
   console.log("body : " + body);
+  const b = JSON.parse(body);
+  const m = new Meta (b);
+  m.save();
   
   fs.writeFile("log.json", body, (err) => {
    if (err)
